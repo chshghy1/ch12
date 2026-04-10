@@ -21,11 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
                         .allowCredentials(true)   // (반드시) 쿠키 허용
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
 
-                // 이미지 파일 요청도 허용
-                registry.addMapping("/file/**")
-                        .allowedOrigins("http://localhost:5173/")
-                        .allowCredentials(true)
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
 
             }
         };
