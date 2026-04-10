@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'  //4.0.4 버전
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.spring'
+version = '0.0.1-SNAPSHOT'
+description = 'myweb12'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //스프링부트툴
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //웹 MVC
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    //JSP
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+    //유용한 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.projectlombok:lombok'   // 컴파일
+    annotationProcessor 'org.projectlombok:lombok' //어노테이션
+
+    //데이터베이스
+    implementation "com.mysql:mysql-connector-j:8.0.31"
+
+    //테스트
+    // Spring Boot에서 테스트를 작성할 때 필요한 라이브러리들을 한 번에 묶어 제공
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // JUnit Platform을 실행할 때 필요한 런처(Launcher) 라이브러리
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
